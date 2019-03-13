@@ -1,5 +1,8 @@
 package proxy.copyproxy;
 
+import proxy.Girl;
+import proxy.Person;
+
 public class ProxyTest {
 
     public static void main(String[] args) {

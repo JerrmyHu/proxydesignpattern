@@ -66,7 +66,7 @@ public class MProxy {
         StringBuffer sb = new StringBuffer();
 
         sb.append("package proxy.copyproxy;" + ln);
-        sb.append("import proxy.copyproxy.Person;"+ln);
+        sb.append("import proxy.Person;"+ln);
         sb.append("import java.lang.reflect.*;" + ln);
         sb.append("public class $Proxy0 implements " + interfaces[0].getName() + "{" + ln);
             sb.append("MInvocationHandler h;" + ln);

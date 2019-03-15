@@ -1,8 +1,5 @@
 # proxydesignpattern
-JDK动态代理中要求目标类实现的接口数量不能超过65535个，是因为在tcp udp协议的开头，会分别有16位来存储源端口号和目标端口号，所以端口个数是2^16-1=65535个，所以在Proxy中的getProxyClass0这个方法中会做接口限制
-
-
-
+JDK动态代理中要求目标类实现的接口数量不能超过65535个，是因为在tcp udp协议的开头，会分别有16位来存储源端口号和目标端口号，所以端口个数是2^16-1=65535个，所以在Proxy中的getProxyClass0这个方法中会做接口限制<br>
 <h1>对代理模式的认识</h1>
 &nbsp&nbsp代理模式就是指为其他对象提供一种代理，用于控制对这个对象的访问，代理对象是在客户端和目标对象之间起到中介的作用，代理模式出现就是保护目标对象和增强目标对象功能<br>
 <h1>代理模式的优缺点</h1>
@@ -29,9 +26,12 @@ JDK动态代理中要求目标类实现的接口数量不能超过65535个，是
  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp4、将重组好的代码编译生成.class文件<br>
  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp5、重新将这个class文件加载到jvm中运行<br>
 &nbsp&nbspjdk proxy生成新对象的这一个过程就是字节码重组，在JDK中有一个规范，在classpath下只要是$开头的class文件一般都是自动生成，<br>
-
 <h1>cglib动态代理</h1>
-
+&nbsp&nbsp使用cglib写动态代理非常的简单，只需要实现MethodInterception，重写intercept()方法就可以实现，使用cglib代理的目标对象不需要实现任何接口，它是通过动态继承目标对象实现的动态代理，CGLib在编译过程中会有三个class文件，分别是代理类，被被代理类，和代理类的fastclass。cglib动态代理采用的机制就是fastclass机制，它为代理类和被代理类各自生成一个class，这两个class文件会为代理类和被代理类的方法分配一个index(int类型)，这个index当做一个参数，fastclass就可以直接定位要调用的方法进行声明调用，这样就可以省去反射调用，效率就比较高<br>
+<h1>CGLib动态代理和JDK动态代理的区别</h1>
+&nbsp1、JDK动态代理是实现被代理对象的接口，CGLib是继承被代理对象<br>
+&nbsp2、jdk和cglib都是在运行时期生成字节码，jdk是直接写class字节码，cglib是使用asm框架写class字节码，cglib的代理实现复杂，生成代理类的效率比jdk低<br>
+&nbsp3、jdk代理掉用代理方法，是通过反射机制调用，cglib是通过fastclass机制直接调用，所以cglib的执行效率高<br>
 <h1>静态模式和动态代理区别</h1>
 &nbsp1、静态代理只能通过手动完成代理操作，如果代理类增加新的方法，代理类要通过新增，违反了开闭原则<br>
 &nbsp2、动态代理采用在运行时动态生成代码的方式，取消了对被代理类的扩展限制，遵循开闭原则<br>

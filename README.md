@@ -36,6 +36,12 @@ JDK动态代理中要求目标类实现的接口数量不能超过65535个，是
 &nbsp1、静态代理只能通过手动完成代理操作，如果代理类增加新的方法，代理类要通过新增，违反了开闭原则<br>
 &nbsp2、动态代理采用在运行时动态生成代码的方式，取消了对被代理类的扩展限制，遵循开闭原则<br>
 &nbsp3、若动态代理要对目标类增加逻辑扩展，结合策略模式，这要增加策略类就可以文成，不需要修改代理类<br>
-<img src="https://github.com/JerrmyHu/proxydesignpattern/blob/master/img/1552626617(1).jpg"/>
+<h1>spring中代理模式的体现（粗略）</h1>
+&nbspSpring中的代理模式在ProxyFactoryBean中的getObject方法中体现，如图
+<img src="https://github.com/JerrmyHu/proxydesignpattern/blob/master/img/1552626617(1).jpg"/><br>
+在getObject方法中主要调用一个单实例getSingletonInstance()和一个多实例getPtototypeInstance()方法。在spring的配置中，如果不做配置，spring代理生成的bean都是单例模式，如果scop修改为prototype，则每次创建一个新的原型对象<br>
+&nbspspring的代理模式的实现主要是在AopProxy.class,JdkDymaicAopProxy.class,CglibAopProxy.class这三个class文件中<br>
+AopProxy.class<br>
+
  
 

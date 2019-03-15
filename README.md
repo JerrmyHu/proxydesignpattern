@@ -47,5 +47,9 @@ JdkDymaicAopProxy.class<br>
 <img src="https://github.com/JerrmyHu/proxydesignpattern/blob/master/img/jdkdynamicaopproxy.jpg"><br>
 CglibAopProxy.class<br>
 <img src="https://github.com/JerrmyHu/proxydesignpattern/blob/master/img/cglibaopproxy.jpg"><br>
+spring中代理选择原则<br>
+&nbsp&nbsp1、当bean有实现接口时，spring就会使用jdk的动态代理<br>
+&nbsp&nbsp2、当bean没有实现接口时，spring就会使用cglib<br>
+&nbsp&nbsp3、spring可以通过配置强制使用cglib，配置方法<aop:aspectj-autoproxy proxy-target-class="true"/>
  
 
